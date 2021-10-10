@@ -73,6 +73,9 @@ def get_time():
                                 "serverTime":str(datetime.datetime.now())
                             }
                 )
+@app.route('assignment2') #endpoint
+def assinment2():
+    return render_template('kelyn_assignment2.html')
 
 @app.route('/auth2') #endpoint
 def auth2():
