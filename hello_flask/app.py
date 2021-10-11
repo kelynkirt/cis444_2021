@@ -55,7 +55,7 @@ def get_time():
                                 "serverTime":str(datetime.datetime.now())
                             }
                 )
-@app.route('assignment2') #endpoint
+@app.route('/assignment2') #endpoint
 def assinment2():
     return render_template('kelyn_assignment2.html')
 
