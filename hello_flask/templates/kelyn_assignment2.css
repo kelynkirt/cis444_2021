@@ -1,11 +1,11 @@
-.grid {
+grid {
   display: flex;
   flex-wrap: wrap;
   width: 500px;
   height: 400px;
 }
 
-.grid__item {
+grid__item {
   height: 30px;
   width: 30px;
   background: static/"flower trail.png";
@@ -14,7 +14,7 @@
   transform: scale(1);
 }
 
-.grid__item:hover {
+grid__item:hover {
   opacity: 1;
   transition: opacity 0.2s ease;
   transform: scale(1.04);
