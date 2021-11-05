@@ -47,17 +47,37 @@ def back():
 @app.route('/backp',  methods=['POST']) #endpoint
 def backp():
     print(request.form)
-    salted = bcrypt.hashpw( bytes(request.form['fname'],  'utf-8' ) , bcrypt.gensalt(10))
+    salted = bcrypt.hashpw( bytes(request.form['password'],  'utf-8' ) , bcrypt.gensalt(10))
     print(salted)
 
-    print(  bcrypt.checkpw(  bytes(request.form['fname'],  'utf-8' )  , salted ))
+    print(  bcrypt.checkpw(  bytes(request.form['password'],  'utf-8' )  , salted ))
 
     return render_template('backatu.html',input_from_browser= str(request.form) )
 
-@app.route('/auth',  methods=['POST']) #endpoint
+@app.route('/auth', methods=['POST']) #endpoint
 def auth():
-        print(request.form)
-        return json_response(data=request.form)
+    print(request.form)
+    return json_response(data=request.form)
+
+
+@app.route('/login', methods=['POST']) #endpoint
+def login():
+    cur = db.cursor();
+    global EXISTS
+    jwt_username = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm = "HS256")
+    cur.execute("SELECT * FROM users WHERE username = '"+ jwt_username +"';")
+    if cur.fetchone() is None:
+        EXISTS = 0
+        return redirect(request.referrer)
+    else:
+        cur.execute("SELECT * FROM users WHERE username = '"+ jwt_username +"';")
+        salted = 
+
+
+
+
+
+
 
 
 

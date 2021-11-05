@@ -12,6 +12,7 @@
 			alert($('#lname').val());
 
 			$('#login').hide();
+			$('#signup').hide();
 			$('#books').show();
 			
 			$('#cars').append('<option value="volvo">Thank you Taco</option>')
@@ -28,14 +29,24 @@
 
 	</script>
             <div id="login">
-	    	<form action="/backp" method="post">
-  			<label for="fname">First name:</label><br>
-  				<input type="text" id="fname" name="fname" value="John"><br>
-  			<label for="lname">Last name:</label><br>
-  				<input type="password" id="lname" name="lname" value="Doe"><br><br>
-  			<input type="submit" value="Signup" onclick="return check_form();">
+	    	<form action="/auth" method="post">
+  			<label for="username">Username:</label><br>
+  				<input type="text" id="username" name="Username" value="Enter Username"><br>
+  			<label for="password">Password:</label><br>
+  				<input type="password" id="Password" name="password" value=""><br><br>
+  			<input type="submit" value="Login" onclick="return check_form();">
+			<input type="submit" value= "Sign Up" onclick="$('#login').hide(); $('#signup').show();">
 		</form>
 	    </div>
+
+	    <div id="signup">
+		    <form action="/auth" style="display:none" method="post">
+			<label for="username">Username:</label><br>
+			    	<input type="text" id="username" name="Username" value="Enter Username"><br>
+			<label for="password">Password:</label><br>
+				<input type="password" id="Password" name="password" value=""><br><br>
+			<input type="submit" value="Sign Up" onclick="return check_form();">
+
 
 	    <div id="books" style="display:none">
 		    <h1>Buy me</h1>
