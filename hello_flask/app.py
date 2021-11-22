@@ -60,18 +60,55 @@ def auth():
     return json_response(data=request.form)
 
 
-@app.route('/login', methods=['POST']) #endpoint
-def login():
-    cur = db.cursor();
+@app.route('/home')
+def home():
+    try:
+        if session['status'] == 'Sign Up':
+            return json_response(page="signup")
+        elif session['status'] == 'Bookstore':
+            return json_response(page="bookstore")
+        else:
+            return json_response(page="login")
+    except Exception as e:
+        return json_response(page="login")
+
+@app.route('/loginauth', methods=['POST', 'GET'])
+def loginauth():
+    cur = db.cursor()
     global EXISTS
-    jwt_username = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm = "HS256")
-    cur.execute("SELECT * FROM users WHERE username = '"+ jwt_username +"';")
+    jwt_usrname = jwt.encode({'username':request.form['usrname']}, JWT_SECRET, algorithm = "HS256")
+    cur.execute("SELECT * FROM users WHERE username = '" + jwt_usrname + "';")
     if cur.fetchone() is None:
-        EXISTS = 0
+        session['status'] = 'Failed'
+        EXISTS = 404
         return redirect(request.referrer)
     else:
-        cur.execute("SELECT * FROM users WHERE username = '"+ jwt_username +"';")
-        salted = 
+        cur.execute("SELECT * FROM users WHERE username = '" + jwt_user +"';")
+        salted_password = cur.fetchone()[2]
+        if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(salted_password, 'utf-8')):
+            session['user'] = jwt_usrname
+            session['status'] = 'Bookstore'
+            EXISTS = None
+            return redirect(request.refferer)
+        else:
+            session['status'] = 'Failed'
+            EXISTS = 404
+            return redirect(request.refferer)
+        return redirect(request.refferer)
+    return redirect(request.refferer)
+
+@app.route('/loginstat')
+def loginstat():
+    if EXISTS == 404:
+        return json_response(loginstat="Invalid username/password combination. Please try again.")
+    return json_response(loginstat="")
+
+@app.route('/bookstore')
+def bookstore():
+    cur = db.cursor()
+    cur.execute("SELECT * FROM books")
+    books_data = cur.fetchall()
+    return json_response(books = books_data)
 
 
 
