@@ -34,11 +34,17 @@ def init_new_env():
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
-    return redirect('/static/index.html')
-
-@app.route("/login", methods=['GET','POST'])
-def login():
     return redirect('/static/home.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('home'))
+    return render_template('login.html', error=error)
 
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
