@@ -46,6 +46,16 @@ def login():
             return redirect('/static/home.html')
     return render_template('login.html', error=error)
 
+@app.route('/send_money', methods=['GET', 'POST'])
+def sendmoney():
+    error = None
+    if request.method == 'POST':
+        if request.form['toaccount'] == ' ' or request.form['fromaccount'] == ' ':
+            error = 'No Account Entered Try Again'
+        else:
+            return redirect('/static/home.html')
+    return render_template('transfer.html', error=error)
+
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
 @token_required
