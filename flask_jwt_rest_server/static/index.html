@@ -9,19 +9,8 @@
 
 	<script>
 		function send_form(){
-			$.post("/login", { "firstname":$('#fname').val(), "password":$('#password').val()},
-                       		function(data, textStatus) {
-					//this gets called when browser receives response from server
-					console.log(data.token);
-					//Set global JWT
-					jwt = data.token;
-					//make secure call with the jwt
-					get_home();
-				}, "json").fail( function(response) {
-					//this gets called if the server throws an error
-					console.log("error");
-					console.log(response);
-				});
+			$.post("/login");
+			$.get("/login");
 			
 		}
 		
