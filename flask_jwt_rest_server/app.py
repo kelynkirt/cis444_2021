@@ -36,6 +36,10 @@ def init_new_env():
 def index():
     return redirect('/static/index.html')
 
+@app.route("/login")
+def login():
+    return redirect('index.html')
+
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
 @token_required
