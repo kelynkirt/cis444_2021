@@ -36,7 +36,7 @@ def init_new_env():
 def index():
     return redirect('/static/index.html')
 
-@app.route("/login", methods=['GET','POST'])
+@app.route("/login", methods=['GET'])
 def login():
     return redirect('/static/home.html')
 
