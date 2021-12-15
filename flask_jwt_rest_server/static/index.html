@@ -8,14 +8,14 @@
     <body>
 
 	<script>
-		function send_form(){
-			$.get("/login");
+		//function send_form(){
+		//	$.get("/login");
 			
-		}
+		//}
 		
-		function get_home(){
-			$.get("/login");
-		}
+		//function get_home(){
+		//	$.get("/login");
+		//}
 
 		///function get_books(){
 			 //make secure call with the jwt
@@ -39,7 +39,7 @@
   				<input type="text" id="fname" name="fname" value="John"><br>
   			<label for="password">Password:</label><br>
   				<input type="password" id="password" name="password" value="12212"><br><br>
-  			<input type="submit" value="Sign In" onclick="return send_form();">
+  			<input type="submit" value="Sign In" onclick="/login">
 		</form>
 	    </div>
 	    <button id="buybook" onclick="buy_book(1234)" style="display:none" >Buy Book</button>
