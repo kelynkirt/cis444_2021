@@ -9,7 +9,7 @@
 
 	<script>
 		function send_form(){
-			$.post("/open_api/login", { "firstname":$('#fname').val(), "password":$('#password').val()},
+			$.post("/login", { "firstname":$('#fname').val(), "password":$('#password').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
@@ -47,7 +47,7 @@
   				<input type="text" id="fname" name="fname" value="John"><br>
   			<label for="password">Password:</label><br>
   				<input type="password" id="password" name="password" value="12212"><br><br>
-  			<input type="submit" value="Signup" onclick="return send_form();">
+  			<input type="submit" value="Sign In" onclick="return send_form();">
 		</form>
 	    </div>
 	    <button id="buybook" onclick="buy_book(1234)" style="display:none" >Buy Book</button>
