@@ -16,13 +16,12 @@
 					//Set global JWT
 					jwt = data.token;
 					//make secure call with the jwt
-					get_books();
+					//get_books();
 				}, "json").fail( function(response) {
 					//this gets called if the server throws an error
 					console.log("error");
 					console.log(response);
 				});
-			return false;
 		}
 
 		///function get_books(){
