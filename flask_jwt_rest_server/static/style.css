@@ -131,12 +131,22 @@ i{
 .container{
     padding: 16px;
 }
+.container h2{
+    font-size: 1.5rem;
+}
 
 form{
     border: 3px solid #dedede;
 }
-
-.input btn {
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.btn btn-default {
   background-color: ##3275a8;
   color: white;
   padding: 14px 20px;
@@ -146,7 +156,7 @@ form{
   width: 100%;
 }
 
-.input btn:hover {
+.btn btn-default:hover {
   opacity: 0.8;
 }
 
